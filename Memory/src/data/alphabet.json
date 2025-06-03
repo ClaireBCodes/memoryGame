@@ -1,0 +1,184 @@
+[
+  {
+    "id": "a",
+    "upperCase": "A",
+    "lowerCase": "a",
+    "word": "apple",
+    "emoji": "🍎"
+  },
+  {
+    "id": "b",
+    "upperCase": "B",
+    "lowerCase": "b",
+    "word": "banana",
+    "emoji": "🍌"
+  },
+  {
+    "id": "c",
+    "upperCase": "C",
+    "lowerCase": "c",
+    "word": "cat",
+    "emoji": "🐱"
+  },
+  {
+    "id": "d",
+    "upperCase": "D",
+    "lowerCase": "d",
+    "word": "dog",
+    "emoji": "🐶"
+  },
+  {
+    "id": "e",
+    "upperCase": "E",
+    "lowerCase": "e",
+    "word": "elephant",
+    "emoji": "🐘"
+  },
+  {
+    "id": "f",
+    "upperCase": "F",
+    "lowerCase": "f",
+    "word": "fish",
+    "emoji": "🐟"
+  },
+  {
+    "id": "g",
+    "upperCase": "G",
+    "lowerCase": "g",
+    "word": "grapes",
+    "emoji": "🍇"
+  },
+  {
+    "id": "h",
+    "upperCase": "H",
+    "lowerCase": "h",
+    "word": "house",
+    "emoji": "🏠"
+  },
+  {
+    "id": "i",
+    "upperCase": "I",
+    "lowerCase": "i",
+    "word": "ice cream",
+    "emoji": "🍦"
+  },
+  {
+    "id": "j",
+    "upperCase": "J",
+    "lowerCase": "j",
+    "word": "jellyfish",
+    "emoji": "🎐"
+  },
+  {
+    "id": "k",
+    "upperCase": "K",
+    "lowerCase": "k",
+    "word": "kite",
+    "emoji": "🪁"
+  },
+  {
+    "id": "l",
+    "upperCase": "L",
+    "lowerCase": "l",
+    "word": "lion",
+    "emoji": "🦁"
+  },
+  {
+    "id": "m",
+    "upperCase": "M",
+    "lowerCase": "m",
+    "word": "monkey",
+    "emoji": "🐵"
+  },
+  {
+    "id": "n",
+    "upperCase": "N",
+    "lowerCase": "n",
+    "word": "note",
+    "emoji": "📝"
+  },
+  {
+    "id": "o",
+    "upperCase": "O",
+    "lowerCase": "o",
+    "word": "octopus",
+    "emoji": "🐙"
+  },
+  {
+    "id": "p",
+    "upperCase": "P",
+    "lowerCase": "p",
+    "word": "pizza",
+    "emoji": "🍕"
+  },
+  {
+    "id": "q",
+    "upperCase": "Q",
+    "lowerCase": "q",
+    "word": "quiet",
+    "emoji": "🤫"
+  },
+  {
+    "id": "r",
+    "upperCase": "R",
+    "lowerCase": "r",
+    "word": "rainbow",
+    "emoji": "🌈"
+  },
+  {
+    "id": "s",
+    "upperCase": "S",
+    "lowerCase": "s",
+    "word": "sun",
+    "emoji": "☀️"
+  },
+  {
+    "id": "t",
+    "upperCase": "T",
+    "lowerCase": "t",
+    "word": "tiger",
+    "emoji": "🐯"
+  },
+  {
+    "id": "u",
+    "upperCase": "U",
+    "lowerCase": "u",
+    "word": "umbrella",
+    "emoji": "☂️"
+  },
+  {
+    "id": "v",
+    "upperCase": "V",
+    "lowerCase": "v",
+    "word": "violin",
+    "emoji": "🎻"
+  },
+  {
+    "id": "w",
+    "upperCase": "W",
+    "lowerCase": "w",
+    "word": "whale",
+    "emoji": "🐳"
+  },
+  {
+    "id": "x",
+    "upperCase": "X",
+    "lowerCase": "x",
+    "word": "x-ray",
+    "emoji": "🩻"
+  },
+  {
+    "id": "y",
+    "upperCase": "Y",
+    "lowerCase": "y",
+    "word": "yawn",
+    "emoji": "🥱"
+  },
+  {
+    "id": "z",
+    "upperCase": "Z",
+    "lowerCase": "z",
+    "word": "zebra",
+    "emoji": "🦓"
+  }
+]

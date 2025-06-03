@@ -2,14 +2,6 @@ import Card from "react-bootstrap/Card";
 
 export function BootstrapTile({symbol, isFlipped, isMatched, onClick}) {
 
-  // return (
-  //   <Card className="border-success text-center" style={{ width: "8rem", height:"8rem" }} bg="light">
-  //     <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-  //       <Card.Title className="text-success">{image}</Card.Title>
-  //     </Card.Body>
-  //   </Card>
-  // );
-
     return (
     <div style={{ position: "relative", width: "100%", paddingTop: "100%" }}>
       <Card
@@ -21,7 +13,7 @@ export function BootstrapTile({symbol, isFlipped, isMatched, onClick}) {
           left: 0,
           width: "100%",
           height: "100%",
-          border: "2px solid #198754", // custom green border
+          border: "6px solid",  // custom green border
           backgroundColor: "#f8f9fa", // Bootstrap light bg
           color: "#198754", // Bootstrap success green
         }}
@@ -32,6 +24,51 @@ export function BootstrapTile({symbol, isFlipped, isMatched, onClick}) {
       </Card>
     </div>
   );
+
+//AI suggested
+  // return (
+  //   <div
+  //     onClick={onClick}
+  //     style={{ position: "relative", width: "100%", paddingTop: "100%" }}
+  //   >
+  //     <div
+  //       className={`tile-inner ${isFlipped || isMatched ? "flipped" : ""}`}
+  //       style={{
+  //         position: "absolute",
+  //         top: 0,
+  //         left: 0,
+  //         width: "100%",
+  //         height: "100%",
+  //         border: "2px solid #198754",
+  //         backgroundColor: isMatched ? "#d4edda" : "#f8f9fa",
+  //         color: "#198754",
+  //         display: "flex",
+  //         alignItems: "center",
+  //         justifyContent: "center",
+  //         transition: "transform 0.6s",
+  //         transformStyle: "preserve-3d",
+  //         transform: isFlipped || isMatched ? "rotateY(180deg)" : "none",
+  //       }}
+  //     >
+  //       <div
+  //         className="front"
+  //         style={{ position: "absolute", backfaceVisibility: "hidden" }}
+  //       >
+  //         {/* Face down side (e.g. with background image) */}
+  //       </div>
+  //       <div
+  //         className="back"
+  //         style={{
+  //           transform: "rotateY(180deg)",
+  //           backfaceVisibility: "hidden",
+  //           position: "absolute",
+  //         }}
+  //       >
+  //         <span>{symbol}</span>
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
 }
 
 

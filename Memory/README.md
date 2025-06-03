@@ -1,12 +1,33 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Josh's suggest match logic
 
-Currently, two official plugins are available:
+- Your data structure sucks
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Use something like:
 
-## Expanding the ESLint configuration
+```json
+{
+  "id": "a",
+  "upperCase": "A",
+  "lowerCase": "a",
+  "word": "apple",
+  "emoji": "🍎"
+}
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Lets call that a MatchGroup.
+
+- Move the input data to its own file.
+- Go get the `lodash` library. Use its `sampleSize` and `shuffle` methods.
+- Move the board state in a React Context so that it doesn't have to worry about UI. Move most of the operations on it to that context.
+
+A Card should have:
+
+- `MatchGroup` entry
+- `flipped` state
+- `matched` (perma flipped)
+- `symbolKey` (e.g. `uppercase`, `emoji` etc so it knows which to display)
+
+Most of what's in GridOf12 setup code should be in the Context.
+
+Should be able to fire it when player clicks "New game".
