@@ -1,8 +1,18 @@
+import { useContext } from "react";
 import Card from "react-bootstrap/Card";
+import { GameLogicContext } from "../context/GameLogic"; // Import the click handler function
 
-export function BootstrapTile({symbol, isFlipped, isMatched, onClick}) {
+export function BootstrapTile({ tile }) {
+  const { handleTileClick } = useContext(GameLogicContext); // Get the click handler from context
 
-    return (
+  //const shownSymbol = tile.flipped || tile.matched ? tile.tile[tile.display] : "?"; // Show the symbol if flipped or matched, otherwise show a placeholder
+  // tile.display gives the type of symbol to display
+  // tile.matched is true if the tile has been matched
+  // tile.flipped is true if the tile has been flipped
+  // tile.tile[tile.display] is what displays on the tile
+  const shownSymbol = tile.tile[tile.display];
+
+  return (
     <div style={{ position: "relative", width: "100%", paddingTop: "100%" }}>
       <Card
         bg="light"
@@ -13,62 +23,16 @@ export function BootstrapTile({symbol, isFlipped, isMatched, onClick}) {
           left: 0,
           width: "100%",
           height: "100%",
-          border: "6px solid",  // custom green border
+          border: "6px solid", // custom green border
           backgroundColor: "#f8f9fa", // Bootstrap light bg
           color: "#198754", // Bootstrap success green
         }}
+        onClick={() => handleTileClick(tile)}
       >
         <Card.Body className="d-flex justify-content-center align-items-center p-0">
-          <Card.Title className="w-100 m-0">{symbol}</Card.Title>
+          <Card.Title className="w-100 m-0">{shownSymbol}</Card.Title>
         </Card.Body>
       </Card>
     </div>
   );
-
-//AI suggested
-  // return (
-  //   <div
-  //     onClick={onClick}
-  //     style={{ position: "relative", width: "100%", paddingTop: "100%" }}
-  //   >
-  //     <div
-  //       className={`tile-inner ${isFlipped || isMatched ? "flipped" : ""}`}
-  //       style={{
-  //         position: "absolute",
-  //         top: 0,
-  //         left: 0,
-  //         width: "100%",
-  //         height: "100%",
-  //         border: "2px solid #198754",
-  //         backgroundColor: isMatched ? "#d4edda" : "#f8f9fa",
-  //         color: "#198754",
-  //         display: "flex",
-  //         alignItems: "center",
-  //         justifyContent: "center",
-  //         transition: "transform 0.6s",
-  //         transformStyle: "preserve-3d",
-  //         transform: isFlipped || isMatched ? "rotateY(180deg)" : "none",
-  //       }}
-  //     >
-  //       <div
-  //         className="front"
-  //         style={{ position: "absolute", backfaceVisibility: "hidden" }}
-  //       >
-  //         {/* Face down side (e.g. with background image) */}
-  //       </div>
-  //       <div
-  //         className="back"
-  //         style={{
-  //           transform: "rotateY(180deg)",
-  //           backfaceVisibility: "hidden",
-  //           position: "absolute",
-  //         }}
-  //       >
-  //         <span>{symbol}</span>
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
 }
-
-
