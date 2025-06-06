@@ -5,18 +5,33 @@ import { GameLogicContext } from "../context/GameLogic"; // Import the click han
 export function BootstrapTile({ tile }) {
   const { handleTileClick } = useContext(GameLogicContext); // Get the click handler from context
 
-  //const shownSymbol = tile.flipped || tile.matched ? tile.tile[tile.display] : "?"; // Show the symbol if flipped or matched, otherwise show a placeholder
   // tile.display gives the type of symbol to display
   // tile.matched is true if the tile has been matched
   // tile.flipped is true if the tile has been flipped
   // tile.tile[tile.display] is what displays on the tile
   const shownSymbol = tile.tile[tile.display];
 
+  // Determine background color
+  let backgroundColor = "#f8f9fa"; // default flipped color
+  let borderColor = "#198754"; // default green border
+  let textOpacity = 1; // default full visibility
+
+  if (!tile.flipped) {
+    backgroundColor = "#fff3cd"; // light yellow for unflipped
+    borderColor = "#ffc107"; // yellow border
+    textOpacity = 0; // hide symbol
+  } 
+  else if (tile.matched) {
+    backgroundColor = "#fff3cd"; // light yellow for matched
+    borderColor = "#ffd700";
+    textOpacity = 0.4; // paler symbol
+  }
+
   return (
     <div style={{ position: "relative", width: "100%", paddingTop: "100%" }}>
       <Card
         bg="light"
-        className="border-success text-center"
+        className= "text-center"
         style={{
           position: "absolute",
           top: 0,
@@ -24,13 +39,19 @@ export function BootstrapTile({ tile }) {
           width: "100%",
           height: "100%",
           border: "6px solid", // custom green border
-          backgroundColor: "#f8f9fa", // Bootstrap light bg
+          backgroundColor: backgroundColor, // Bootstrap light bg
+          borderColor: borderColor, // custom green border
           color: "#198754", // Bootstrap success green
         }}
         onClick={() => handleTileClick(tile)}
       >
         <Card.Body className="d-flex justify-content-center align-items-center p-0">
-          <Card.Title className="w-100 m-0">{shownSymbol}</Card.Title>
+          <Card.Title
+            className="w-100 m-0"
+            style={{ opacity: textOpacity, transition: "opacity 0.3s" }}
+          >
+            {shownSymbol}
+          </Card.Title>
         </Card.Body>
       </Card>
     </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { getSets } from "../tools/getSets";
 import { shuffleCards } from "../tools/shuffleCards";
 import alphabet from "../data/alphabet.json";
@@ -10,6 +10,8 @@ const matchTypes = ["upperCase", "lowerCase", "word", "emoji"];
 
 export function GameLogic({ boardSize, children }) {
   //board setup - only run once at the start of the game
+
+  // TODO (Josh): Everything between here and startingBoard can be pulled out into a function.
   const sets = getSets(alphabet, boardSize / 2); // small array of objects back
   const cards1 = sets.map((set) => ({
     tile: set,
@@ -32,19 +34,23 @@ export function GameLogic({ boardSize, children }) {
     if (tile.matched || tile.flipped) {
       return; // Ignore clicks on matched or already flipped tiles
     }
+
+    // TODO (Josh): Doing `map` for this logic is not efficient, and suggests you should be using a different data structure.
+    // Try making the board an Object or a Map, keyed by the ID of the tile.
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
     if (!firstPick) {
-      setFirstPick(tile.tile); // Store the first picked tile
+      console.log("First pick:", tile.tile);
+      setFirstPick(tile); // Store the first picked whole tile
       setTileState((prevState) =>
-        prevState.map((t) =>
-          t.tile === tile.tile ? { ...t, flipped: true } : t
-        )
+        prevState.map((t) => (t === tile ? { ...t, flipped: true } : t))
       );
     } else {
       // Second pick logic
       const secondPick = tile;
+      console.log("Second pick:", secondPick.tile);
       setTileState((prevState) =>
         prevState.map((t) => {
-          if (t.tile === firstPick.tile || t.tile === secondPick.tile) {
+          if (t === firstPick || t === secondPick) {
             return { ...t, flipped: true };
           }
           return t;
@@ -52,7 +58,7 @@ export function GameLogic({ boardSize, children }) {
       );
 
       // Check for a match
-      if (firstPick.tile.value === secondPick.tile.value) {
+      if (firstPick.tile.id === secondPick.tile.id) {
         // Mark both as matched
         setTileState((prevState) =>
           prevState.map((t) =>
@@ -77,13 +83,6 @@ export function GameLogic({ boardSize, children }) {
       }
     }
   };
-
-  // need to do the matching logic
-  // pick first card, store value in state - grid of 12 or context?
-  // pick second card, check if the card value is in the same bracket as the first card
-  // if it is, mark both as matched
-  // update state for both cards as matched - what level state do I store this on? Card level?
-  // pass it down to card at the time of sending the flip bac
 
   return (
     <GameLogicContext.Provider value={{ tileState, handleTileClick }}>
