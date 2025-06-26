@@ -10,6 +10,7 @@ export function BootstrapTile({ tile }) {
   // tile.flipped is true if the tile has been flipped
   // tile.tile[tile.display] is what displays on the tile
   const shownSymbol = tile.tile[tile.display];
+  // console.log(shownSymbol)
 
   // Determine background color
   let backgroundColor = "#f8f9fa"; // default flipped color

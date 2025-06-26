@@ -5,20 +5,25 @@ import { OptionsList } from "./components/OptionsList";
 import { GameBoard } from "./components/GameBoard";
 import { Gridof12 } from "./components/Gridof12";
 import { GameLogic } from "./context/GameLogic";
+import { Container } from "react-bootstrap";
+import { GameOptionsProvider } from "./context/GameOptions";
 // import { MatchStyleProvider } from "./context/MatchStyle";
 
 function App() {
   return (
     <>
-      {/* <MatchStyleProvider> */}
+      <GameOptionsProvider>
       <HeaderBar />
       <HowToPlay />
-      <OptionsList />
-      <GameLogic boardSize={12}>
-        <Gridof12 />
-      </GameLogic>
+      <Container className="options-board">
+        <OptionsList />
+
+        <GameLogic boardSize={12}>
+          <Gridof12 />
+        </GameLogic>
+      </Container>
       {/* <GameBoard /> */}
-      {/* </MatchStyleProvider> */}
+      </GameOptionsProvider>
     </>
   );
 }

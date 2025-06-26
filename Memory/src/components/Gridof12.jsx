@@ -5,6 +5,7 @@ import { GameLogicContext } from "../context/GameLogic";
 
 export function Gridof12() {
   const { tileState } = React.useContext(GameLogicContext);
+  console.log("tilestate", tileState)
 
   //would like this just to handeaqdle the display of the tiles
   //will have 12, 16 and 20 as the options
