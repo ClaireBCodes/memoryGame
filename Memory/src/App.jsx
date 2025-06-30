@@ -1,7 +1,7 @@
 import "./App.css";
 import { HeaderBar } from "./components/HeaderBar";
 import { HowToPlay } from "./components/HowToPlay";
-import { OptionsList } from "./components/OptionsList";
+// import { OptionsList } from "./components/OptionsList";
 import { GameBoard } from "./components/GameBoard";
 import { Gridof12 } from "./components/Gridof12";
 import { GameLogic } from "./context/GameLogic";
@@ -12,18 +12,18 @@ import { GameOptionsProvider } from "./context/GameOptions";
 function App() {
   return (
     <>
-      <GameOptionsProvider>
       <HeaderBar />
       <HowToPlay />
       <Container className="options-board">
-        <OptionsList />
+        <GameOptionsProvider>
+          {/* <OptionsList /> */}
 
-        <GameLogic boardSize={12}>
-          <Gridof12 />
-        </GameLogic>
+          <GameLogic boardSize={12}>
+            <Gridof12 />
+          </GameLogic>
+        </GameOptionsProvider>
       </Container>
       {/* <GameBoard /> */}
-      </GameOptionsProvider>
     </>
   );
 }

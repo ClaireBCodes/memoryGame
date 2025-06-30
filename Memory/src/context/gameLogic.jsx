@@ -4,22 +4,23 @@ import { getSets } from "../tools/getSets";
 // import { shuffleCards } from "../tools/shuffleCards";
 import alphabet from "../data/alphabet.json";
 import { useGameOptions } from "../context/GameOptions";
-import { keyBy, shuffle } from "lodash";
+import { keyBy, shuffle, keys } from "lodash";
 
 export const GameLogicContext = React.createContext();
 
 // const matchTypes = ["upperCase", "lowerCase", "word", "emoji"];
 
-function cardKey(card) {
-  return `${card.tile.id}-${card.display}${card.set}`;
+export function cardKey(card) {
+  return `${card.id}-${card.display}${card.set}`;
 }
 
-function buildStartingBoard(boardSize, matchStyle1, matchStyle2) {
+export function buildStartingBoard(boardSize, matchStyle1, matchStyle2) {
   // console.log(boardSize, matchStyle1, matchStyle2);
 
   const sets = getSets(alphabet, boardSize / 2); // small array of objects back
+
   const cards1 = sets.map((set) => ({
-    tile: set,
+    ...set,
     display: matchStyle1,
     flipped: false, // Initially all tiles are not flipped
     matched: false, // Initially no tiles are matched
@@ -27,29 +28,24 @@ function buildStartingBoard(boardSize, matchStyle1, matchStyle2) {
   }));
 
   const cards2 = sets.map((set) => ({
-    tile: set,
+    ...set,
     display: matchStyle2,
     flipped: false,
     matched: false,
     set: 2,
   }));
 
-  // console.log("cards1",cards1)
-
   const allTiles = [...cards1, ...cards2];
-  console.log("all tiles", allTiles)
+
   const keyedTiles = keyBy(allTiles, cardKey);
-  console.log("keyed tiles", keyedTiles)
-  const startingBoard = shuffle(keyedTiles); // shuffle is removing the keys?
-  console.log("starting board",startingBoard);
-  return startingBoard;
 
+  // {{}} - Object of Objects.
+  return keyedTiles;
+}
 
-  // I JUST WANT AN ARRAY OF OBJECTS!!!!
-  // IT NEEDS TO STAY IN THE SAME SHUFFLED BLOODY ORDER!!!
-  // NO MORE REMOVING KEYS, NO MORE UNDOING SHUFFLES!!!
-  // NO MORE ADDING EXTRA BITS TO THE END!!!!
-  // SOMETHING I CAN MAP THE BOOTSTRAP CARD TEMPLATE OVER!!!
+export function shuffledKeys(board) {
+  // ["keys"] - Array of keys (strings)
+  return shuffle(keys(board));
 }
 
 export function GameLogic({ children }) {
@@ -58,8 +54,10 @@ export function GameLogic({ children }) {
   //board setup - only run once at the start of the game
 
   const startingBoard = buildStartingBoard(boardSize, matchStyle1, matchStyle2);
-  console.log("startingBoard", startingBoard);
 
+  // Although we never modify shuffled, we need it to be in state so that React tracks it properly.
+  // There is probably a way around this.
+  const [shuffled] = useState(shuffledKeys(startingBoard));
   const [tileState, setTileState] = useState(startingBoard);
   const [firstPick, setFirstPick] = useState(null);
 
@@ -90,14 +88,12 @@ export function GameLogic({ children }) {
       //     // this needs to update the value of the flipped tile, not add it on the end
       //   };
       // });
-
-      
     } else {
       // Second pick logic
       const secondPick = tile;
       console.log("Second pick:", secondPick.tile);
 
-      const isMatched = firstPick.tile.id === secondPick.tile.id;
+      const isMatched = firstPick.id === secondPick.id;
 
       setTileState((prevState) => {
         // currently this turns the array of objects into a different structure:
@@ -139,7 +135,7 @@ export function GameLogic({ children }) {
   };
 
   return (
-    <GameLogicContext.Provider value={{ tileState, handleTileClick }}>
+    <GameLogicContext.Provider value={{ tileState, shuffled, handleTileClick }}>
       {children}
     </GameLogicContext.Provider>
   );

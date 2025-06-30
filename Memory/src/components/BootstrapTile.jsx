@@ -9,7 +9,7 @@ export function BootstrapTile({ tile }) {
   // tile.matched is true if the tile has been matched
   // tile.flipped is true if the tile has been flipped
   // tile.tile[tile.display] is what displays on the tile
-  const shownSymbol = tile.tile[tile.display];
+  const shownSymbol = tile[tile.display];
   // console.log(shownSymbol)
 
   // Determine background color
@@ -21,8 +21,7 @@ export function BootstrapTile({ tile }) {
     backgroundColor = "#fff3cd"; // light yellow for unflipped
     borderColor = "#ffc107"; // yellow border
     textOpacity = 0; // hide symbol
-  } 
-  else if (tile.matched) {
+  } else if (tile.matched) {
     backgroundColor = "#fff3cd"; // light yellow for matched
     borderColor = "#ffd700";
     textOpacity = 0.4; // paler symbol
@@ -32,7 +31,7 @@ export function BootstrapTile({ tile }) {
     <div style={{ position: "relative", width: "100%", paddingTop: "100%" }}>
       <Card
         bg="light"
-        className= "text-center"
+        className="text-center"
         style={{
           position: "absolute",
           top: 0,
