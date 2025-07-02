@@ -2,33 +2,19 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { useGameOptions } from "../context/GameOptions";
-import { useContext } from "react";
-import { GameLogicContext } from "../context/GameLogic";
+import { useState } from "react";
+import { defaultBoard } from "../tools/boardUtils";
 
-export function OptionsList() {
+export function OptionsList({ newBoard }) {
   //set default for each dropdown - default game condition
   //will display in the title field the current setting as saved in context
   //on change will set the game condition into context, and display the new setting in the title field
-  const {
-    boardSize,
-    setBoardSize,
-    matchStyle1,
-    setMatchStyle1,
-    matchStyle2,
-    setMatchStyle2,
-  } = useGameOptions();
+  const [boardSize, setBoardSize] = useState(defaultBoard.boardSize);
+  const [matchStyle1, setMatchStyle1] = useState(defaultBoard.matchStyle1);
+  const [matchStyle2, setMatchStyle2] = useState(defaultBoard.matchStyle2);
 
-  const handleBoardSizeChange = (size) => {
-    setBoardSize(size);
-  };
-
-  const handleMatchStyle1Change = (style) => {
-    setMatchStyle1(style);
-  };
-
-  const handleMatchStyle2Change = (style) => {
-    setMatchStyle2(style);
+  const newGame = () => {
+    newBoard({ boardSize, matchStyle1, matchStyle2 });
   };
 
   return (
@@ -43,16 +29,16 @@ export function OptionsList() {
                 id="nav-dropdown-boardsize"
                 title={`${boardSize} Cards`}
               >
-                <NavDropdown.Item onClick={() => handleBoardSizeChange(8)}>
+                <NavDropdown.Item onClick={() => setBoardSize(8)}>
                   8 Cards
                 </NavDropdown.Item>
-                <NavDropdown.Item onClick={() => handleBoardSizeChange(12)}>
+                <NavDropdown.Item onClick={() => setBoardSize(12)}>
                   12 Cards
                 </NavDropdown.Item>
-                <NavDropdown.Item onClick={() => handleBoardSizeChange(16)}>
+                <NavDropdown.Item onClick={() => setBoardSize(16)}>
                   16 Cards
                 </NavDropdown.Item>
-                <NavDropdown.Item onClick={() => handleBoardSizeChange(20)}>
+                <NavDropdown.Item onClick={() => setBoardSize(20)}>
                   20 Cards
                 </NavDropdown.Item>
               </NavDropdown>
@@ -63,24 +49,16 @@ export function OptionsList() {
           <Navbar.Collapse id="navbar-matchstyle1">
             <Nav>
               <NavDropdown id="nav-dropdown-matchstyle1" title={matchStyle1}>
-                <NavDropdown.Item
-                  onClick={() => handleMatchStyle1Change("lowerCase")}
-                >
+                <NavDropdown.Item onClick={() => setMatchStyle1("lowerCase")}>
                   a
                 </NavDropdown.Item>
-                <NavDropdown.Item
-                  onClick={() => handleMatchStyle1Change("upperCase")}
-                >
+                <NavDropdown.Item onClick={() => setMatchStyle1("upperCase")}>
                   A
                 </NavDropdown.Item>
-                <NavDropdown.Item
-                  onClick={() => handleMatchStyle1Change("word")}
-                >
+                <NavDropdown.Item onClick={() => setMatchStyle1("word")}>
                   Apple
                 </NavDropdown.Item>
-                <NavDropdown.Item
-                  onClick={() => handleMatchStyle1Change("emoji")}
-                >
+                <NavDropdown.Item onClick={() => setMatchStyle1("emoji")}>
                   🍎
                 </NavDropdown.Item>
               </NavDropdown>
@@ -89,24 +67,16 @@ export function OptionsList() {
           <Navbar.Collapse id="navbar-matchstyle2">
             <Nav>
               <NavDropdown id="nav-matchstyle2" title={matchStyle2}>
-                <NavDropdown.Item
-                  onClick={() => handleMatchStyle2Change("lowerCase")}
-                >
+                <NavDropdown.Item onClick={() => setMatchStyle2("lowerCase")}>
                   a
                 </NavDropdown.Item>
-                <NavDropdown.Item
-                  onClick={() => handleMatchStyle2Change("upperCase")}
-                >
+                <NavDropdown.Item onClick={() => setMatchStyle2("upperCase")}>
                   A
                 </NavDropdown.Item>
-                <NavDropdown.Item
-                  onClick={() => handleMatchStyle2Change("word")}
-                >
+                <NavDropdown.Item onClick={() => setMatchStyle2("word")}>
                   Apple
                 </NavDropdown.Item>
-                <NavDropdown.Item
-                  onClick={() => handleMatchStyle2Change("emoji")}
-                >
+                <NavDropdown.Item onClick={() => setMatchStyle2("emoji")}>
                   🍎
                 </NavDropdown.Item>
               </NavDropdown>
@@ -114,7 +84,7 @@ export function OptionsList() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <button>New Game</button>
+      <button onClick={newGame}>New Game</button>
     </>
   );
 }

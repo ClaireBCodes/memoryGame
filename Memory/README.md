@@ -34,14 +34,14 @@ Should be able to fire it when player clicks "New game".
 Kanban and User Stories
 
 To Do
-- GameLogic gameboard structure has changed. Will break things downstream
+o GameLogic gameboard structure has changed. Will break things downstream
 - Improve the background
 - style the text
 - develop a card back to display
 - front of card background to display
 - style the matched pairs
 - flip animation
-- lockout timer while displaying and flipping back
+- lockout timer while displaying and flipping back - try to do with css rather than js
 - style the options bar (especially for small screens)
 - improve responsive grid to lock in particular ratios and scale cards down accordingly
 - Have match style set from dropdown to be used to make game board
@@ -59,7 +59,7 @@ Bugs
 Gameplay
 As a player I want to be able to start a new game when I load the page
 As a player I want to be able to start a new game when I click a new game button
-As a player I want a warning that changing settings mid game (after a tile has been flipped) will start a new game
+x - As a player I want a warning that changing settings mid game (after a tile has been flipped) will start a new game
 As a player I want to be able to select board size
 As a player I want to be able to select match type
 As a player I want to be able to select two tiles and see if they match

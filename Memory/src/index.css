@@ -87,6 +87,19 @@ button:focus-visible {
     "wdth" 100;
 }
 
+.flip-card {
+  position: "absolute",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100%",
+  border: "6px solid", // custom green border
+  backgroundColor: backgroundColor, // Bootstrap light bg
+  borderColor: borderColor, // custom green border
+  color: "#198754", // Bootstrap success green
+}
+
+
 /* .card-front {
   position: "absolute",
   top: 0,

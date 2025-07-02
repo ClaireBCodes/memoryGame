@@ -1,47 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
-import { getSets } from "../tools/getSets";
-// import { shuffleCards } from "../tools/shuffleCards";
-import alphabet from "../data/alphabet.json";
-import { useGameOptions } from "../context/GameOptions";
-import { keyBy, shuffle, keys } from "lodash";
+import { cardKey } from "../tools/boardUtils";
+import { shuffle, keys } from "lodash";
+import { buildStartingBoard, defaultBoard } from "../tools/boardUtils";
+import { OptionsList } from "../components/OptionsList";
 
 export const GameLogicContext = React.createContext();
-
-// const matchTypes = ["upperCase", "lowerCase", "word", "emoji"];
-
-export function cardKey(card) {
-  return `${card.id}-${card.display}${card.set}`;
-}
-
-export function buildStartingBoard(boardSize, matchStyle1, matchStyle2) {
-  // console.log(boardSize, matchStyle1, matchStyle2);
-
-  const sets = getSets(alphabet, boardSize / 2); // small array of objects back
-
-  const cards1 = sets.map((set) => ({
-    ...set,
-    display: matchStyle1,
-    flipped: false, // Initially all tiles are not flipped
-    matched: false, // Initially no tiles are matched
-    set: 1,
-  }));
-
-  const cards2 = sets.map((set) => ({
-    ...set,
-    display: matchStyle2,
-    flipped: false,
-    matched: false,
-    set: 2,
-  }));
-
-  const allTiles = [...cards1, ...cards2];
-
-  const keyedTiles = keyBy(allTiles, cardKey);
-
-  // {{}} - Object of Objects.
-  return keyedTiles;
-}
 
 export function shuffledKeys(board) {
   // ["keys"] - Array of keys (strings)
@@ -49,16 +13,24 @@ export function shuffledKeys(board) {
 }
 
 export function GameLogic({ children }) {
-  const { boardSize, matchStyle1, matchStyle2 } = useGameOptions(); //gets settings from context
-
-  //board setup - only run once at the start of the game
-
-  const startingBoard = buildStartingBoard(boardSize, matchStyle1, matchStyle2);
-
   // Although we never modify shuffled, we need it to be in state so that React tracks it properly.
   // There is probably a way around this.
-  const [shuffled] = useState(shuffledKeys(startingBoard));
-  const [tileState, setTileState] = useState(startingBoard);
+
+  const [initialBoard, setInitialBoard] = useState(
+    buildStartingBoard(defaultBoard)
+  );
+  const [tileState, setTileState] = useState(initialBoard);
+  const [shuffled, setShuffled] = useState(shuffledKeys(tileState));
+
+  const newBoard = (opts) => {
+    setInitialBoard(buildStartingBoard(opts));
+  };
+
+  useEffect(() => {
+    setTileState(initialBoard);
+    setShuffled(shuffledKeys(initialBoard));
+  }, [initialBoard]);
+
   const [firstPick, setFirstPick] = useState(null);
 
   const handleTileClick = (tile) => {
@@ -136,6 +108,7 @@ export function GameLogic({ children }) {
 
   return (
     <GameLogicContext.Provider value={{ tileState, shuffled, handleTileClick }}>
+      <OptionsList newBoard={newBoard} />
       {children}
     </GameLogicContext.Provider>
   );
