@@ -31,8 +31,19 @@ export function BootstrapTile({ tile }) {
     <div style={{ position: "relative", width: "100%", paddingTop: "100%" }}>
       <Card
         bg="light"
-        className="text-center flip-card"
+        className="text-center"
         onClick={() => handleTileClick(tile)}
+        style={{  
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          border: "6px solid", // custom green border
+          backgroundColor: backgroundColor, // Bootstrap light bg
+          borderColor: borderColor, // custom green border
+          color: "#198754", // Bootstrap success green
+          }}
       >
         <Card.Body className="d-flex justify-content-center align-items-center p-0">
           <Card.Title
