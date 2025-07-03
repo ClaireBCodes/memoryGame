@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { shuffleCards } from "../tools/shuffleCards";
+import { shuffleCards } from "./shuffleCards";
 import { getSets } from "../tools/getSets";
 import _ from "lodash";
 import alphabet from "../data/alphabet.json";

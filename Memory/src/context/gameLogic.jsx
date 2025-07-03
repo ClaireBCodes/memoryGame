@@ -39,7 +39,7 @@ export function GameLogic({ children }) {
     }
 
     if (!firstPick) {
-      console.log("First pick:", tile.tile);
+      console.log("First pick:", tile);
       setFirstPick(tile); // Store the first picked whole tile
 
       const key = cardKey(tile);
@@ -63,7 +63,7 @@ export function GameLogic({ children }) {
     } else {
       // Second pick logic
       const secondPick = tile;
-      console.log("Second pick:", secondPick.tile);
+      console.log("Second pick:", secondPick);
 
       const isMatched = firstPick.id === secondPick.id;
 
@@ -87,22 +87,22 @@ export function GameLogic({ children }) {
       });
 
       // Check for a match
-      if (isMatched) {
-        setFirstPick(null); // Reset first pick
-      } else {
+      if (!isMatched) {
         // Reset the first pick after a short delay
+        const localFirstPick = firstPick;
         setTimeout(() => {
+          // this delay should be on the animation not the state change.
           setTileState((prevState) => {
             return {
               ...prevState,
-              [cardKey(firstPick)]: { ...firstPick, flipped: false },
+              [cardKey(firstPick)]: { ...localFirstPick, flipped: false },
               [cardKey(secondPick)]: { ...secondPick, flipped: false },
             };
           });
-
-          setFirstPick(null); // Reset first pick
-        }, 1000);
+        }, 1000); // display time for not-matched tiles before they flip back
       }
+
+      setFirstPick(null); // Reset first pick
     }
   };
 
