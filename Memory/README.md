@@ -46,6 +46,7 @@ o GameLogic gameboard structure has changed. Will break things downstream
 - improve responsive grid to lock in particular ratios and scale cards down accordingly
 - Have match style set from dropdown to be used to make game board
 - have board size set from dropdown
+- consistent radius on tiles, tileplaces and button
 
 
 Bugs
@@ -54,6 +55,7 @@ Bugs
 - sometimes a tile will stay flipped, but not be matched, and not count towards the next pair flipped
 - tiles and board resize their area when different match options are selected
 - gameboard area should not resize depending on the text lengths in the options menu!
+- currently match is checked and style changed before flip animation has finished
 
 
 Gameplay
@@ -78,6 +80,7 @@ As a player I want an attractive (to kids) background
 As a player I want an interesting back of tile
 As a player I want to see a flip animation
 As a player I want the matched tiles to look different to the just flipped tiles
+As a player I want to see the moused over tile pop out a bit
 
 Development
 As a developer I want to unit test the logic
