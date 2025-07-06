@@ -14,8 +14,6 @@ export function BootstrapTile({ tile }) {
   // flip-card-back shows match symbol.
 
   const shownSymbol = tile[tile.display];
-  console.log("shown symbol", shownSymbol)
-
 
   let flipped = tile.flipped ? "flipped" : "not-flipped";
   let matched = tile.matched ? "matched" : "not-matched";

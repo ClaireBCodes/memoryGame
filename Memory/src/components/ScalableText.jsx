@@ -15,7 +15,7 @@ export function ScalableText({ text }) {
   }, [text]);
 
   return (
-    <svg 
+    <svg
       ref={ref}
       width="100%"
       height="100%"
