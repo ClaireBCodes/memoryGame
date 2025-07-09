@@ -1,9 +1,10 @@
-import Container from "react-bootstrap/Container";
+
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useState } from "react";
 import { defaultBoard, niceText } from "../tools/boardUtils";
+import { Button, Modal, Dropdown, Container, Row, Col } from "react-bootstrap";
 
 export function OptionsList({ newBoard }) {
   //set default for each dropdown - default game condition
@@ -13,86 +14,108 @@ export function OptionsList({ newBoard }) {
   const [matchStyle1, setMatchStyle1] = useState(defaultBoard.matchStyle1);
   const [matchStyle2, setMatchStyle2] = useState(defaultBoard.matchStyle2);
 
+  // modal controls
+  const [showOptions, setShowOptions] = useState(false);
+  const handleClose = () => setShowOptions(false);
+  const handleShow = () => setShowOptions(true);
+
   const newGame = () => {
     newBoard({ boardSize, matchStyle1, matchStyle2 });
   };
 
   return (
     <>
-      <Navbar expand="lg">
-        <Container fluid>
-          <Navbar.Brand href="#home" className="bodyFont">
-            Board Size:
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbar-boardsize" />
-          <Navbar.Collapse id="navbar-boardsize">
-            <Nav>
-              <NavDropdown
-                id="nav-dropdown-boardsize"
-                title={`${boardSize} Cards`}
-                className="me-4 "
-              >
-                <NavDropdown.Item onClick={() => setBoardSize(8)}>
-                  8 Cards
-                </NavDropdown.Item>
-                <NavDropdown.Item onClick={() => setBoardSize(12)}>
-                  12 Cards
-                </NavDropdown.Item>
-                <NavDropdown.Item onClick={() => setBoardSize(16)}>
-                  16 Cards
-                </NavDropdown.Item>
-                <NavDropdown.Item onClick={() => setBoardSize(20)}>
-                  20 Cards
-                </NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
-          </Navbar.Collapse>
-          <Navbar.Brand href="#home" className="bodyFont">
-            Match Style:
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbar-matchstyle1" />
-          <Navbar.Collapse id="navbar-matchstyle1">
-            <Nav>
-              <NavDropdown
-                id="nav-dropdown-matchstyle1"
-                title={niceText(matchStyle1)}
-              >
-                <NavDropdown.Item onClick={() => setMatchStyle1("lowerCase")}>
-                  a : lower case
-                </NavDropdown.Item>
-                <NavDropdown.Item onClick={() => setMatchStyle1("upperCase")}>
-                  A : upper case
-                </NavDropdown.Item>
-                <NavDropdown.Item onClick={() => setMatchStyle1("word")}>
-                  apple : word
-                </NavDropdown.Item>
-                <NavDropdown.Item onClick={() => setMatchStyle1("emoji")}>
-                  🍎 : image
-                </NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
-          </Navbar.Collapse>
-          <Navbar.Collapse id="navbar-matchstyle2">
-            <Nav>
-              <NavDropdown id="nav-matchstyle2" title={niceText(matchStyle2)}>
-                <NavDropdown.Item onClick={() => setMatchStyle2("lowerCase")}>
-                  a : lower case
-                </NavDropdown.Item>
-                <NavDropdown.Item onClick={() => setMatchStyle2("upperCase")}>
-                  A : upper case
-                </NavDropdown.Item>
-                <NavDropdown.Item onClick={() => setMatchStyle2("word")}>
-                  apple : word
-                </NavDropdown.Item>
-                <NavDropdown.Item onClick={() => setMatchStyle2("emoji")}>
-                  🍎 : image
-                </NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-      <button onClick={newGame} className="bodyFont">New Game</button>
+      <Container className="my-3 d-flex justify-content-evenly">
+        <button onClick={handleShow} className="bodyFont">
+          Options
+        </button>
+        <button onClick={newGame} className="bodyFont">
+          New Game
+        </button>
+      </Container>
+
+      <Modal show={showOptions} onHide={handleClose} centered>
+        <Modal.Header closeButton>
+          <Modal.Title className="bodyFont">Game Options</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Container>
+            <Row className="mb-3 ">
+              <Col>
+                <h5 className="bodyFont">How many cards on your board?</h5>
+                <Dropdown>
+                  <Dropdown.Toggle variant="secondary" className="bodyFont ">
+                    {boardSize} Cards
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    {[8, 12, 16, 20].map((size) => (
+                      <Dropdown.Item
+                        key={size}
+                        onClick={() => setBoardSize(size)}
+                      >
+                        {size} Cards
+                      </Dropdown.Item>
+                    ))}
+                  </Dropdown.Menu>
+                </Dropdown>
+              </Col>
+            </Row>
+
+            <Row className="mb-3">
+              <Col>
+                <h5 className="bodyFont">
+                  What type of match would you like to make?
+                </h5>
+                <Dropdown>
+                  <Dropdown.Toggle variant="secondary" className="bodyFont">
+                    {niceText(matchStyle1)}
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    {["lowerCase", "upperCase", "word", "emoji"].map(
+                      (style) => (
+                        <Dropdown.Item
+                          key={style}
+                          onClick={() => setMatchStyle1(style)}
+                        >
+                          {niceText(style)}
+                        </Dropdown.Item>
+                      )
+                    )}
+                  </Dropdown.Menu>
+                </Dropdown>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col>
+                <h5 className="bodyFont"> with </h5>
+                <Dropdown>
+                  <Dropdown.Toggle variant="secondary" className="bodyFont">
+                    {niceText(matchStyle2)}
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    {["lowerCase", "upperCase", "word", "emoji"].map(
+                      (style) => (
+                        <Dropdown.Item
+                          key={style}
+                          onClick={() => setMatchStyle2(style)}
+                        >
+                          {niceText(style)}
+                        </Dropdown.Item>
+                      )
+                    )}
+                  </Dropdown.Menu>
+                </Dropdown>
+              </Col>
+            </Row>
+          </Container>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

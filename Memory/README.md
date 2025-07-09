@@ -43,7 +43,6 @@ Appearance:
 - size set by code not by text lengths!
 cards
 - medium and above
-  - card size 120 px
   - horizontal layout max 4 rows
   - if 20 tiles, add an extra column and recenter
   - tiles remain same size
@@ -57,7 +56,7 @@ menus
 - small
   - swap to burger menus, vertical stack
 
-
+- put the options menu in a modal, opened by a button. Add more info to the matching types
 
 To Do
 o GameLogic gameboard structure has changed. Will break things downstream

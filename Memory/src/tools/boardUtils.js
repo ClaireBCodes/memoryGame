@@ -1,5 +1,5 @@
 import alphabet from "../data/alphabet.json";
-import { keyBy } from "lodash";
+import { keyBy, every } from "lodash";
 
 export const matchStyles = ["upperCase", "lowerCase", "word", "emoji"];
 
@@ -68,4 +68,9 @@ export function niceText(matchStyle) {
     case "word":
       return "apple : word";
   }
-};
+}
+
+export function isGameFinished(board) {
+  // console.log("check if game over")
+  return every(board, (tile) => tile.matched);
+}

@@ -1,9 +1,14 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { cardKey } from "../tools/boardUtils";
-import { shuffle, keys } from "lodash";
-import { buildStartingBoard, defaultBoard } from "../tools/boardUtils";
+import { shuffle, keys, every } from "lodash";
+import {
+  buildStartingBoard,
+  defaultBoard,
+  isGameFinished,
+} from "../tools/boardUtils";
 import { OptionsList } from "../components/OptionsList";
+import { GameFinished } from "../components/GameFinished";
 
 export const GameLogicContext = React.createContext();
 
@@ -19,7 +24,7 @@ export function GameLogic({ children }) {
   const [initialBoard, setInitialBoard] = useState(
     buildStartingBoard(defaultBoard)
   );
-  const [tileState, setTileState] = useState(initialBoard);
+  const [tileState, setTileState] = useState(initialBoard); //holds the active board in its most recent state
   const [shuffled, setShuffled] = useState(shuffledKeys(tileState));
 
   const newBoard = (opts) => {
@@ -31,9 +36,6 @@ export function GameLogic({ children }) {
     setTileState(initialBoard);
     setShuffled(shuffledKeys(initialBoard));
   }, [initialBoard]);
-
-
-
 
   const handleTileClick = (tile) => {
     if (tile.matched || tile.flipped) {
@@ -111,7 +113,9 @@ export function GameLogic({ children }) {
   return (
     <GameLogicContext.Provider value={{ tileState, shuffled, handleTileClick }}>
       <OptionsList newBoard={newBoard} />
-      {children}
+      {isGameFinished(tileState) ? <GameFinished /> : children}
+      {/* children is what displays game board. Ideally want game Finished to be a modal over the top.
+      need to do a conditional render of the modal, while still showing the board, which will shimmer rainbow */}
     </GameLogicContext.Provider>
   );
 }

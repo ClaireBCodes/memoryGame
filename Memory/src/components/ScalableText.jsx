@@ -19,7 +19,7 @@ export function ScalableText({ text }) {
       ref={ref}
       width="100%"
       height="100%"
-      viewBox={bbox ? makeViewBox(bbox) : ""}
+      viewBox={bbox ? makeViewBox(bbox) : null}
       style={{
         visibility: bbox ? "visible" : "hidden",
       }}

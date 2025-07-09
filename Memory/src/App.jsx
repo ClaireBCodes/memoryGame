@@ -8,10 +8,10 @@ import { GameLogic } from "./context/GameLogic";
 
 function App() {
   return (
-    <div className="d-flex flex-column min-vh-100 ">
+    <div className="d-flex flex-column min-vh-100">
       <HeaderBar />
       <HowToPlay />
-      <Container className="options-board">
+      <Container className="options-board container-md">
         <GameLogic>
           <Gridof12 />
         </GameLogic>

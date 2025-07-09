@@ -59,7 +59,7 @@ h3 {
 button {
   border: 2px solid transparent;
   padding: 0.3em 0.8em;
-  font-size: 1.3em !important;
+  font-size: 1.2em !important;
   font-weight: 700;
   background-color: cornsilk;
   cursor: pointer;
@@ -73,11 +73,6 @@ button:hover {
   transform: translate(2px, 2px);
 }
 
-/* .noto-color-emoji-regular {
-  font-family: "Noto Color Emoji", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-} */
 
 .fuzzy-bubbles-regular {
   font-family: "Fuzzy Bubbles", sans-serif;
