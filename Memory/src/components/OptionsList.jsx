@@ -3,7 +3,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useState } from "react";
-import { defaultBoard } from "../tools/boardUtils";
+import { defaultBoard, niceText } from "../tools/boardUtils";
 
 export function OptionsList({ newBoard }) {
   //set default for each dropdown - default game condition
@@ -21,13 +21,16 @@ export function OptionsList({ newBoard }) {
     <>
       <Navbar expand="lg">
         <Container fluid>
-          <Navbar.Brand href="#home">Board Size:</Navbar.Brand>
+          <Navbar.Brand href="#home" className="bodyFont">
+            Board Size:
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbar-boardsize" />
           <Navbar.Collapse id="navbar-boardsize">
             <Nav>
               <NavDropdown
                 id="nav-dropdown-boardsize"
                 title={`${boardSize} Cards`}
+                className="me-4 "
               >
                 <NavDropdown.Item onClick={() => setBoardSize(8)}>
                   8 Cards
@@ -44,47 +47,52 @@ export function OptionsList({ newBoard }) {
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
-          <Navbar.Brand href="#home">Match Style:</Navbar.Brand>
+          <Navbar.Brand href="#home" className="bodyFont">
+            Match Style:
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbar-matchstyle1" />
           <Navbar.Collapse id="navbar-matchstyle1">
             <Nav>
-              <NavDropdown id="nav-dropdown-matchstyle1" title={matchStyle1}>
+              <NavDropdown
+                id="nav-dropdown-matchstyle1"
+                title={niceText(matchStyle1)}
+              >
                 <NavDropdown.Item onClick={() => setMatchStyle1("lowerCase")}>
-                  a
+                  a : lower case
                 </NavDropdown.Item>
                 <NavDropdown.Item onClick={() => setMatchStyle1("upperCase")}>
-                  A
+                  A : upper case
                 </NavDropdown.Item>
                 <NavDropdown.Item onClick={() => setMatchStyle1("word")}>
-                  Apple
+                  apple : word
                 </NavDropdown.Item>
                 <NavDropdown.Item onClick={() => setMatchStyle1("emoji")}>
-                  🍎
+                  🍎 : image
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
           <Navbar.Collapse id="navbar-matchstyle2">
             <Nav>
-              <NavDropdown id="nav-matchstyle2" title={matchStyle2}>
+              <NavDropdown id="nav-matchstyle2" title={niceText(matchStyle2)}>
                 <NavDropdown.Item onClick={() => setMatchStyle2("lowerCase")}>
-                  a
+                  a : lower case
                 </NavDropdown.Item>
                 <NavDropdown.Item onClick={() => setMatchStyle2("upperCase")}>
-                  A
+                  A : upper case
                 </NavDropdown.Item>
                 <NavDropdown.Item onClick={() => setMatchStyle2("word")}>
-                  Apple
+                  apple : word
                 </NavDropdown.Item>
                 <NavDropdown.Item onClick={() => setMatchStyle2("emoji")}>
-                  🍎
+                  🍎 : image
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <button onClick={newGame}>New Game</button>
+      <button onClick={newGame} className="bodyFont">New Game</button>
     </>
   );
 }

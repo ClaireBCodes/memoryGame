@@ -15,7 +15,7 @@ export function shuffledKeys(board) {
 export function GameLogic({ children }) {
   // Although we never modify shuffled, we need it to be in state so that React tracks it properly.
   // There is probably a way around this.
-
+  const [firstPick, setFirstPick] = useState(null);
   const [initialBoard, setInitialBoard] = useState(
     buildStartingBoard(defaultBoard)
   );
@@ -24,6 +24,7 @@ export function GameLogic({ children }) {
 
   const newBoard = (opts) => {
     setInitialBoard(buildStartingBoard(opts));
+    setFirstPick(null);
   };
 
   useEffect(() => {
@@ -31,7 +32,8 @@ export function GameLogic({ children }) {
     setShuffled(shuffledKeys(initialBoard));
   }, [initialBoard]);
 
-  const [firstPick, setFirstPick] = useState(null);
+
+
 
   const handleTileClick = (tile) => {
     if (tile.matched || tile.flipped) {

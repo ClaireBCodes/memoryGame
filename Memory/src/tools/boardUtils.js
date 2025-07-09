@@ -56,3 +56,16 @@ export function buildStartingBoard({ boardSize, matchStyle1, matchStyle2 }) {
   // {{}} - Object of Objects.
   return keyedTiles;
 }
+
+export function niceText(matchStyle) {
+  switch (matchStyle) {
+    case "lowerCase":
+      return "a : lower case";
+    case "upperCase":
+      return "A : upper case";
+    case "emoji":
+      return "🍎 : image";
+    case "word":
+      return "apple : word";
+  }
+};

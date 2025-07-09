@@ -8,7 +8,7 @@ import { GameLogic } from "./context/GameLogic";
 
 function App() {
   return (
-    <>
+    <div className="d-flex flex-column min-vh-100 ">
       <HeaderBar />
       <HowToPlay />
       <Container className="options-board">
@@ -17,7 +17,7 @@ function App() {
         </GameLogic>
       </Container>
       {/* <GameBoard /> */}
-    </>
+    </div>
   );
 }
 

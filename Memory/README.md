@@ -33,14 +33,40 @@ Should be able to fire it when player clicks "New game".
 
 Kanban and User Stories
 
+
+- size variation, currently everything is scaling to the width of the options list nav bar. Want it to scale with screen width instead
+- size at different breakpoint - above medium is good. After that would like to gently scale to 100% width (and a little padding)
+before we start shrinking cards. At a certain point (maybe small) switch to a vertical pattern arrangement
+- decide how I want it to look on small mobile screens in terms of card size and layout
+
+Appearance:
+- size set by code not by text lengths!
+cards
+- medium and above
+  - card size 120 px
+  - horizontal layout max 4 rows
+  - if 20 tiles, add an extra column and recenter
+  - tiles remain same size
+- small
+  - layout long edge vertical
+  - smaller tile size? consistent
+menus
+- medium and above
+  - consistent header and nav bar width
+  - full menu text displayed
+- small
+  - swap to burger menus, vertical stack
+
+
+
 To Do
 o GameLogic gameboard structure has changed. Will break things downstream
-- Improve the background
+o Improve the background
 - style the text
-- develop a card back to display
-- front of card background to display
-- style the matched pairs
-- flip animation
+o develop a card back to display
+o front of card background to display
+o style the matched pairs
+o flip animation
 - lockout timer while displaying and flipping back - try to do with css rather than js
 - style the options bar (especially for small screens)
 - improve responsive grid to lock in particular ratios and scale cards down accordingly

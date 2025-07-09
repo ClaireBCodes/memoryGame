@@ -48,16 +48,23 @@ h1 {
   -webkit-text-fill-color: transparent;
 }
 
+h3 {
+  font-family: "Fuzzy Bubbles", sans-serif ;
+}
+
+.bodyFont {
+  font-family: "Fuzzy Bubbles", sans-serif ;
+}
+
 button {
-  border-radius: 8px;
   border: 2px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
+  padding: 0.3em 0.8em;
+  font-size: 1.3em !important;
+  font-weight: 700;
   background-color: cornsilk;
   cursor: pointer;
   border-color: rgb(54, 180, 54);
+  border-radius: 5px !important;
   transition: border-color 0.25s, /* background-color 0.25s,  */ transform 0.25s;
 }
 button:hover {
@@ -71,6 +78,12 @@ button:hover {
   font-weight: 400;
   font-style: normal;
 } */
+
+.fuzzy-bubbles-regular {
+  font-family: "Fuzzy Bubbles", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
 
 .card.flip-card {
   position: absolute;
@@ -99,7 +112,7 @@ button:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-
+  border-radius: 5px;
   position: absolute;
   height: 100%;
   -webkit-backface-visibility: hidden; /* Safari */
@@ -121,13 +134,11 @@ button:hover {
 
   position: relative;
   overflow: hidden;
-
 }
-.flip-card-back.matched{
+.flip-card-back.matched {
   border-color: goldenrod;
   background-color: bisque;
 }
-
 
 .flip-card-front {
   /* has the card pattern */
@@ -140,8 +151,6 @@ button:hover {
   border-width: 4px;
   border-color: rgb(54, 180, 54);
 }
-
-
 
 .flip-card-back::after {
   content: "";
