@@ -24,7 +24,15 @@ export function ScalableText({ text }) {
         visibility: bbox ? "visible" : "hidden",
       }}
     >
-      <text>{text}</text>
+      <text
+      className="winkySans"
+      style={{
+        textAlign: "center",
+      }}
+      >{text}</text>
     </svg>
   );
 }
+
+
+

@@ -113,9 +113,10 @@ export function GameLogic({ children }) {
   return (
     <GameLogicContext.Provider value={{ tileState, shuffled, handleTileClick }}>
       <OptionsList newBoard={newBoard} />
-      {isGameFinished(tileState) ? <GameFinished /> : children}
-      {/* children is what displays game board. Ideally want game Finished to be a modal over the top.
-      need to do a conditional render of the modal, while still showing the board, which will shimmer rainbow */}
+      <>
+        {isGameFinished(tileState) && <GameFinished />}
+        {children}
+      </>
     </GameLogicContext.Provider>
   );
 }

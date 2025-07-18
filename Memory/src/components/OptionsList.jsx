@@ -25,26 +25,31 @@ export function OptionsList({ newBoard }) {
 
   return (
     <>
-      <Container className="my-3 d-flex justify-content-evenly">
-        <button onClick={handleShow} className="bodyFont">
+      <Container className="my-3 d-flex justify-content-center ">
+        <button onClick={handleShow} className="bodyFont mx-3">
           Options
         </button>
-        <button onClick={newGame} className="bodyFont">
+        <button onClick={newGame} className="bodyFont mx-3">
           New Game
         </button>
       </Container>
 
-      <Modal show={showOptions} onHide={handleClose} centered>
-        <Modal.Header closeButton>
+      <Modal
+        show={showOptions}
+        onHide={handleClose}
+        centered
+        ClassName="options-border"
+      >
+        <Modal.Header className="options-background">
           <Modal.Title className="bodyFont">Game Options</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="options-background">
           <Container>
-            <Row className="mb-3 ">
+            <Row className="mb-3">
               <Col>
                 <h5 className="bodyFont">How many cards on your board?</h5>
                 <Dropdown>
-                  <Dropdown.Toggle variant="secondary" className="bodyFont ">
+                  <Dropdown.Toggle className="bodyFont w-auto text-wrap dropdown-theme">
                     {boardSize} Cards
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
@@ -63,11 +68,14 @@ export function OptionsList({ newBoard }) {
 
             <Row className="mb-3">
               <Col>
-                <h5 className="bodyFont">
-                  What type of match would you like to make?
-                </h5>
-                <Dropdown>
-                  <Dropdown.Toggle variant="secondary" className="bodyFont">
+                <h5 className="bodyFont">What would you like to match?</h5>
+              </Col>
+            </Row>
+
+            <Row className="d-flex ">
+              <Col xs="auto" className="d-flex">
+                <Dropdown className="d-flex ">
+                  <Dropdown.Toggle className="bodyFont w-auto text-wrap dropdown-theme">
                     {niceText(matchStyle1)}
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
@@ -84,13 +92,12 @@ export function OptionsList({ newBoard }) {
                   </Dropdown.Menu>
                 </Dropdown>
               </Col>
-            </Row>
-
-            <Row>
-              <Col>
+              <Col xs="auto" className="d-flex">
                 <h5 className="bodyFont"> with </h5>
-                <Dropdown>
-                  <Dropdown.Toggle variant="secondary" className="bodyFont">
+              </Col>
+              <Col xs="auto" className="d-flex">
+                <Dropdown className="d-flex">
+                  <Dropdown.Toggle className="bodyFont w-auto text-wrap dropdown-theme">
                     {niceText(matchStyle2)}
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
@@ -110,10 +117,13 @@ export function OptionsList({ newBoard }) {
             </Row>
           </Container>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
+        <Modal.Footer className="options-background flex-column align-items-start">
+          <h5 className="bodyFont mb-2">
+            Start a new game to play your choices!
+          </h5>
+          <button className="bodyFont w-auto text-wrap" onClick={handleClose}>
+            Save & close
+          </button>
         </Modal.Footer>
       </Modal>
     </>

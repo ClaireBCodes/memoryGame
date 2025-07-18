@@ -4,16 +4,22 @@ import { BootstrapTile } from "./BootstrapTile";
 import { GameLogicContext } from "../context/GameLogic";
 import { map } from "lodash";
 
+
 export function Gridof12() {
   const { tileState, shuffled } = React.useContext(GameLogicContext);
 
+
   return (
-    <Container className="mt-4">
-      <Row style={{ maxWidth: 720 }} className="d-flex justify-content-center ">
+    <Container className="mt-4 d-flex justify-content-md-center">
+      <Row
+        style={{ maxWidth: 780, }}
+        className="d-flex w-100"
+        
+      >
         {map(shuffled, (tileKey) => (
           <Col
             key={tileKey}
-            xs={6}
+            xs={4}
             md={3}
             className="d-flex justify-content-center mb-4"
           >
