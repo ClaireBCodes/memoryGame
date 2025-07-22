@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { cardKey } from "../tools/boardUtils";
-import { shuffle, keys, every } from "lodash";
+import { shuffle, keys } from "lodash";
 import {
   buildStartingBoard,
   defaultBoard,
@@ -13,13 +13,10 @@ import { GameFinished } from "../components/GameFinished";
 export const GameLogicContext = React.createContext();
 
 export function shuffledKeys(board) {
-  // ["keys"] - Array of keys (strings)
   return shuffle(keys(board));
 }
 
 export function GameLogic({ children }) {
-  // Although we never modify shuffled, we need it to be in state so that React tracks it properly.
-  // There is probably a way around this.
   const [firstPick, setFirstPick] = useState(null);
   const [initialBoard, setInitialBoard] = useState(
     buildStartingBoard(defaultBoard)
@@ -56,14 +53,6 @@ export function GameLogic({ children }) {
         },
       }));
 
-      // setTileState((prevState) => {
-      //   return {
-      //     ...prevState,
-      //     [cardKey(tile)]: { ...tile, flipped: true },
-      //     // currently not working
-      //     // this needs to update the value of the flipped tile, not add it on the end
-      //   };
-      // });
     } else {
       // Second pick logic
       const secondPick = tile;

@@ -13,7 +13,7 @@ export function cardKey(card) {
   return `${card.id}-${card.display}${card.set}`;
 }
 
-//Grab "count" random differernt pairs of tiles from the "table"
+//Grab "count" random different pairs of tiles from the "table"
 export function getSets(table, count) {
   const setsPicked = [];
   const workingTable = [...table]; // Create a copy of the table to avoid modifying the original
@@ -57,6 +57,7 @@ export function buildStartingBoard({ boardSize, matchStyle1, matchStyle2 }) {
   return keyedTiles;
 }
 
+// niceText is what displays on dropdown menus
 export function niceText(matchStyle) {
   switch (matchStyle) {
     case "lowerCase":

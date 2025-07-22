@@ -8,8 +8,6 @@ import { Button, Modal, Dropdown, Container, Row, Col } from "react-bootstrap";
 
 export function OptionsList({ newBoard }) {
   //set default for each dropdown - default game condition
-  //will display in the title field the current setting as saved in context
-  //on change will set the game condition into context, and display the new setting in the title field
   const [boardSize, setBoardSize] = useState(defaultBoard.boardSize);
   const [matchStyle1, setMatchStyle1] = useState(defaultBoard.matchStyle1);
   const [matchStyle2, setMatchStyle2] = useState(defaultBoard.matchStyle2);

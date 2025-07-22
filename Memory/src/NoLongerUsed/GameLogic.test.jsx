@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { buildStartingBoard } from "./gameLogic";
+import { buildStartingBoard } from "../context/gameLogic";
 import { size } from "lodash";
 
 test("buildStartingBoard should build a starting board", () => {

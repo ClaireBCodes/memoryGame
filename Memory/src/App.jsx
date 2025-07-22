@@ -6,12 +6,9 @@ import { Container } from "react-bootstrap";
 import { GameLogic } from "./context/GameLogic";
 import { getViewportHeight } from "./tools/boardUtils"
 
-// import { MatchStyleProvider } from "./context/MatchStyle";
-
 function App() {
 
   const viewportheight = getViewportHeight();
-  
 
   return (
     <div
@@ -25,7 +22,6 @@ function App() {
           <Gridof12 className="grid-wrapper" />
         </GameLogic>
       </Container>
-      {/* <GameBoard /> */}
     </div>
   );
 }
