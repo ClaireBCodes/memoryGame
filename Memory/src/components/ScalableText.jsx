@@ -4,7 +4,7 @@ const makeViewBox = (bbox) => {
   return `${bbox.x} ${bbox.y} ${bbox.width} ${bbox.height}`;
 };
 
-export function ScalableText({ text }) {
+export function ScalableText({ text, emoji }) {
   const ref = useRef(null);
   const [bbox, setBbox] = useState(null);
 
@@ -13,6 +13,11 @@ export function ScalableText({ text }) {
       setBbox(ref.current.getBBox());
     }
   }, [text]);
+
+  // update so that font = true uses font-family: "Noto Color Emoji", sans-serif;
+  const fontFamily = emoji
+    ? '"Noto Color Emoji", sans-serif'
+    : '"Winky Sans", sans-serif';
 
   return (
     <svg
@@ -25,11 +30,13 @@ export function ScalableText({ text }) {
       }}
     >
       <text
-      className="winkySans"
-      style={{
-        textAlign: "center",
-      }}
-      >{text}</text>
+        style={{
+          fontFamily,
+          textAlign: "center",
+        }}
+      >
+        {text}
+      </text>
     </svg>
   );
 }

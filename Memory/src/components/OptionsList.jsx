@@ -1,4 +1,3 @@
-
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
@@ -17,17 +16,41 @@ export function OptionsList({ newBoard }) {
   const handleClose = () => setShowOptions(false);
   const handleShow = () => setShowOptions(true);
 
+  // clicked animation state
+  const [clickedButton, setClickedButton] = useState(null);
+
   const newGame = () => {
     newBoard({ boardSize, matchStyle1, matchStyle2 });
+  };
+
+  const handleClick = (action) => {
+    setClickedButton(action);
+    setTimeout(() => setClickedButton(null), 400);
+
+    if (action === "options") {
+      handleShow();
+    } else if (action === "new") {
+      newGame();
+    }
   };
 
   return (
     <>
       <Container className="my-3 d-flex justify-content-center ">
-        <button onClick={handleShow} className="bodyFont mx-3">
+        <button
+          onClick={() => handleClick("options")}
+          className={`bodyFont mx-3 ${
+            clickedButton === "options" ? "clicked" : ""
+          }`}
+        >
           Options
         </button>
-        <button onClick={newGame} className="bodyFont mx-3">
+        <button
+          onClick={() => handleClick("new")}
+          className={`bodyFont mx-3 ${
+            clickedButton === "new" ? "clicked" : ""
+          }`}
+        >
           New Game
         </button>
       </Container>

@@ -13,7 +13,10 @@ export function BootstrapTile({ tile }) {
   // flip-card-front shows pattern,
   // flip-card-back shows match symbol.
 
+  console.log("tile", tile)
+
   const shownSymbol = tile[tile.display];
+  const isEmoji = tile.display === "emoji";
 
   let flipped = tile.flipped ? "flipped" : "not-flipped";
   let matched = tile.matched ? "matched" : "not-matched";
@@ -32,7 +35,7 @@ export function BootstrapTile({ tile }) {
           </Card.Title>
           <Card.Title className={`w-100 m-0 p-1 flip-card-back ${matched}`}>
             {/* symbol side */}
-            <ScalableText text={shownSymbol} />
+            <ScalableText text={shownSymbol} emoji={isEmoji} />
           </Card.Title>
         </Card.Body>
       </Card>
