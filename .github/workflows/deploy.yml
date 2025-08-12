@@ -39,7 +39,12 @@ jobs:
           
       - name: List installed packages
         run: npm list --depth=0
-        
+
+      - name: List directory:
+        run: |
+          pwd
+          ls -a
+
       - name: Build
         run: |
           echo "Building application..."
