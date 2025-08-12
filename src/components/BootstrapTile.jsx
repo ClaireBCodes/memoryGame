@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import Card from "react-bootstrap/Card";
-import { GameLogicContext } from "../context/GameLogic"; // Import the click handler function
+import GameLogicContext from "../context/GameLogicContext"; // Import the click handler function
 import { ScalableText } from "./ScalableText";
 
 export function BootstrapTile({ tile }) {
@@ -13,7 +13,7 @@ export function BootstrapTile({ tile }) {
   // flip-card-front shows pattern,
   // flip-card-back shows match symbol.
 
-  console.log("tile", tile)
+  console.log("tile", tile);
 
   const shownSymbol = tile[tile.display];
   const isEmoji = tile.display === "emoji";

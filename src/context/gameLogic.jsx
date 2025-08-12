@@ -9,8 +9,7 @@ import {
 } from "../tools/boardUtils";
 import { OptionsList } from "../components/OptionsList";
 import { GameFinished } from "../components/GameFinished";
-
-export const GameLogicContext = React.createContext();
+import GameLogicContext from "./GameLogicContext";
 
 export function shuffledKeys(board) {
   return shuffle(keys(board));
@@ -52,7 +51,6 @@ export function GameLogic({ children }) {
           flipped: true,
         },
       }));
-
     } else {
       // Second pick logic
       const secondPick = tile;

@@ -75,8 +75,3 @@ export function isGameFinished(board) {
   // console.log("check if game over")
   return every(board, (tile) => tile.matched);
 }
-
-export function getViewportHeight () {
-  return window.innerWidth;
-   
-}
