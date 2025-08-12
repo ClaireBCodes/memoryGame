@@ -27,28 +27,15 @@ jobs:
           node-version: "20"
           cache: "npm"
 
-      - name: Check Node and npm versions
-        run: |
-          node --version
-          npm --version
-
       - name: Install dependencies
         run: |
           echo "Installing dependencies..."
-          npm install --verbose
-
-      - name: List installed packages
-        run: npm list --depth=0
-
-      - name: List directory
-        run: |
-          pwd
-          ls -a
+          npm ci
 
       - name: Build
         run: |
           echo "Building application..."
-          npm run build
+          npm run build-ci
 
       - name: Check build output
         run: |

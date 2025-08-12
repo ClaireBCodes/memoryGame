@@ -7,7 +7,7 @@ import { GameLogic } from "./context/GameLogic";
 
 function App() {
   return (
-    <div className="d-flex flex-column  min-vw-100">
+    <div className="d-flex flex-column min-vw-100">
       <HeaderBar />
       <HowToPlay />
       <Container className="options-board container justify-content-center">
