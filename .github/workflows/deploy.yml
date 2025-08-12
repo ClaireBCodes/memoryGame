@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -20,27 +20,27 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
-          
+          node-version: "20"
+          cache: "npm"
+
       - name: Check Node and npm versions
         run: |
           node --version
           npm --version
-          
+
       - name: Install dependencies
         run: |
           echo "Installing dependencies..."
           npm install --verbose
-          
+
       - name: List installed packages
         run: npm list --depth=0
 
-      - name: List directory:
+      - name: List directory
         run: |
           pwd
           ls -a
@@ -49,19 +49,19 @@ jobs:
         run: |
           echo "Building application..."
           npm run build
-          
+
       - name: Check build output
         run: |
           echo "Checking dist folder..."
           ls -la dist/
-          
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
-        
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          path: "./dist"
 
   deploy:
     environment:
