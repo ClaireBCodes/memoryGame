@@ -13,8 +13,6 @@ export function BootstrapTile({ tile }) {
   // flip-card-front shows pattern,
   // flip-card-back shows match symbol.
 
-  console.log("tile", tile);
-
   const shownSymbol = tile[tile.display];
   const isEmoji = tile.display === "emoji";
 

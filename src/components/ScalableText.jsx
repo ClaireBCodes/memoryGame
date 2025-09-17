@@ -40,6 +40,3 @@ export function ScalableText({ text, emoji }) {
     </svg>
   );
 }
-
-
-

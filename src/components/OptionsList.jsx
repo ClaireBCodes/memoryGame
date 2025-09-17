@@ -59,7 +59,7 @@ export function OptionsList({ newBoard }) {
         show={showOptions}
         onHide={handleClose}
         centered
-        ClassName="options-border"
+        className="options-border"
       >
         <Modal.Header className="options-background">
           <Modal.Title className="bodyFont">Game Options</Modal.Title>

@@ -17,7 +17,7 @@ export function Gridof12() {
             md={3}
             className="d-flex justify-content-center mb-4"
           >
-            <BootstrapTile tile={tileState[tileKey]} />
+            <BootstrapTile tile={tileState[tileKey]} key={tileKey} />
           </Col>
         ))}
       </Row>
