@@ -23,7 +23,6 @@
   font-style: normal;
 }
 
-
 a {
   font-weight: 500;
   color: #646cff;
@@ -60,11 +59,11 @@ h1 {
 }
 
 h3 {
-  font-family: "Fuzzy Bubbles", sans-serif ;
+  font-family: "Fuzzy Bubbles", sans-serif;
 }
 
 .bodyFont {
-  font-family: "Fuzzy Bubbles", sans-serif ;
+  font-family: "Fuzzy Bubbles", sans-serif;
 }
 
 button {
@@ -78,7 +77,7 @@ button {
   cursor: pointer;
   border-color: rgb(54, 180, 54);
   border-radius: 5px !important;
-  transition: border-color 0.25s, color 0.25s,  transform 0.25s;
+  transition: border-color 0.25s, color 0.25s, transform 0.25s;
 }
 
 /* Desktop hover effect */
@@ -101,8 +100,6 @@ button.clicked {
   transform: translate(2px, 2px);
 }
 
-
-
 .fuzzy-bubbles-regular {
   font-family: "Fuzzy Bubbles", sans-serif;
   font-weight: 400;
@@ -115,7 +112,7 @@ button.clicked {
   left: 0;
   width: 100%;
   height: 100%;
-  perspective: 1000px; 
+  perspective: 1000px;
 }
 
 .flip-card .flip-card-inner {
@@ -248,17 +245,14 @@ button.clicked {
   }
 }
 
-
-
-.options-border{
-  
+.options-border {
   border: 2px solid transparent !important;
   border-color: goldenrod !important;
   border-radius: 5px !important;
   position: relative;
   overflow: hidden;
 }
-.options-background{
+.options-background {
   background: cornsilk !important;
 }
 
@@ -271,5 +265,13 @@ button.clicked {
   background-color: cornsilk !important;
   border-color: rgb(54, 180, 54) !important;
   border-radius: 5px !important;
-  color:black !important;
+  color: black !important;
+}
+
+.emoji {
+  font-family: "Noto Color Emoji", sans-serif;
+}
+
+.not-emoji {
+  font-family: "Winky Sans", sans-serif;
 }
